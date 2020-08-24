@@ -1,4 +1,9 @@
-class carro():
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
+class motor():
+
     def __init__(self, velocidade=0):
         self.velocidade = velocidade
 
