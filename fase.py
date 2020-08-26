@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 from itertools import chain
+
+import self as self
+import tempo as tempo
+
 from atores import ATIVO
 
 
@@ -73,7 +77,12 @@ class Fase():
 
         :return:
         """
-        return EM_ANDAMENTO
+        if not self._possui_porco_ativo():
+            return VITORIA
+        elif self._possui_passaros_ativos():
+            return EM_ANDAMENTO
+        else:
+            return DERROTA
 
     def lancar(self, angulo, tempo):
         """
@@ -86,7 +95,10 @@ class Fase():
         :param angulo: ângulo de lançamento
         :param tempo: Tempo de lançamento
         """
-        pass
+        for passaro in self._passaros:
+             if not passaro.foi_lancado():
+                 passaro.lancar(angulo, tempo)
+                 break
 
 
     def calcular_pontos(self, tempo):
@@ -105,3 +117,14 @@ class Fase():
     def _transformar_em_ponto(self, ator):
         return Ponto(ator.x, ator.y, ator.caracter())
 
+    def _possui_porco_ativo(self):
+        for porcos in self._porcos:
+            if porcos.status == ATIVO:
+                return True
+        return False
+
+    def _possui_passaros_ativos(self):
+        for passaros in self._passaros:
+            if passaros.status == ATIVO:
+                return True
+        return False
