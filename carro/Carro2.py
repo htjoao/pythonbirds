@@ -44,31 +44,31 @@ Exemplo:
     >>> # Testando Direcao
     >>> direcao = Direcao()
     >>> direcao.valor
-    "Norte"
+    'Norte'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
-    "Leste"
+    'Leste'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
-    "Sul"
+    'Sul'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
-    "Oeste"
+    'Oeste'
     >>> direcao.girar_a_direita()
     >>> direcao.valor
-    "Norte"
+    'Norte'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
-    "Oeste"
+    'Oeste'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
-    "Sul"
+    'Sul'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
-    "Leste"
+    'Leste'
     >>> direcao.girar_a_esquerda()
     >>> direcao.valor
-    "Norte"
+    'Norte'
     >>> carro = Carro(direcao, motor)
     >>> carro.calcular_velocidade()
     0
@@ -82,25 +82,48 @@ Exemplo:
     >>> carro.calcular_velocidade()
     0
     >>> carro.calcular_direcao()
-    "Norte"
+    'Norte'
     >>> carro.girar_a_direita()
     >>> carro.calcular_direcao()
-    "Leste"
+    'Leste'
     >>> carro.girar_a_esquerda()
     >>> direcao = carro.calcular_direcao()
         
-    "Norte"
+    'Norte'
     >>> carro.girar_a_esquerda()
     >>> carro.calcular_direcao()
-    "Oeste")"""
-NORTE = "Norte"
-SUL = "Sul"
-LESTE = "Leste"
-OESTE = "Oeste"
+    'Oeste'"""
+
+NORTE = 'Norte'
+SUL = 'Sul'
+LESTE = 'Leste'
+OESTE = 'Oeste'
+
+class Carro:
+
+    def __init__(self, direcao, motor):
+        self.motor = motor
+        self.direcao = direcao
+
+    def calcular_velocidade(self):
+        return self.motor.velocidade
+
+    def acelerar(self):
+        return self.motor.acelerar()
+
+    def frear(self):
+        return self.motor.frear()
+    def calcular_direcao(self):
+        return self.direcao.valor
+    def girar_a_direita(self):
+        return self.direcao.girar_a_direita()
+    def girar_a_esquerda(self):
+        return self.direcao.girar_a_esquerda()
 
 class Motor:
     def __init__(self):
         self.velocidade = 0
+
     def acelerar(self):
         self.velocidade += 1
 
